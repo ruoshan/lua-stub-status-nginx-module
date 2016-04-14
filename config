@@ -1,3 +1,12 @@
+if [ "$HTTP_STUB_STATUS" != YES ]; then
+    cat << END
+
+** requires option "--with-http_stub_status_module" enabled **
+
+END
+    exit 1
+fi
+
 ngx_addon_name=ngx_http_lua_stub_status_module
 HTTP_MODULES="$HTTP_MODULES ngx_http_lua_stub_status_module"
 NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/src/ngx_http_lua_stub_status_module.c"

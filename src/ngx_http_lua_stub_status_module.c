@@ -3,21 +3,17 @@
  * Copyright (C) Ruoshan Huang
  */
 
-#ifdef (NGX_STAT_STUB)
-
 #ifndef DDEBUG
 #define DDEBUG 0
 #endif
 #include "ddebug.h"
 
 
+#include <ngx_config.h>
 #include <ngx_core.h>
 #include <ngx_http.h>
 #include <lauxlib.h>
 #include "ngx_http_lua_api.h"
-
-
-ngx_module_t ngx_http_lua_stub_status_module;
 
 extern ngx_atomic_t  *ngx_stat_accepted;
 extern ngx_atomic_t  *ngx_stat_handled;
@@ -94,6 +90,3 @@ ngx_http_lua_stub_status(lua_State *L) {
 
     return 1;
 }
-
-
-#endif /* NGX_STAT_STUB */
