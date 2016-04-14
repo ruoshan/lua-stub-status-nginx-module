@@ -24,6 +24,7 @@ extern ngx_atomic_t  *ngx_stat_writing;
 extern ngx_atomic_t  *ngx_stat_waiting;
 
 static ngx_int_t ngx_http_lua_stub_status_init(ngx_conf_t *cf);
+static int       ngx_http_lua_stub_status_create_module(lua_State *L);
 static int       ngx_http_lua_stub_status(lua_State *L);
 
 static ngx_http_module_t ngx_http_lua_stub_status_ctx = {
@@ -55,12 +56,18 @@ ngx_module_t ngx_http_lua_stub_status_module = {
 
 
 static ngx_int_t ngx_http_lua_stub_status_init(ngx_conf_t *cf) {
-    if (ngx_http_lua_add_package_preload(cf, "ngx.stub_status", ngx_http_lua_stub_status)
+    if (ngx_http_lua_add_package_preload(cf, "ngx.stub_status", ngx_http_lua_stub_status_create_module)
         != NGX_OK) {
         return NGX_ERROR;
     }
 
     return NGX_OK;
+}
+
+static int
+ngx_http_lua_stub_status_create_module(lua_State *L) {
+    lua_pushcfunction(L, ngx_http_lua_stub_status);
+    return 1;
 }
 
 static int
