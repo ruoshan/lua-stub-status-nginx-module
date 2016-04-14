@@ -72,6 +72,9 @@ configure your openresty:
 make -j2
 make install
 ```
+
+:warning: `--with-http_stub_status_module` option is required
+
 [Back to TOC](#table-of-contents)
 
 Author
