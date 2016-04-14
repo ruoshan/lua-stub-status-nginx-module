@@ -26,42 +26,36 @@ __DATA__
         content_by_lua_block {
             local stub_status = require "ngx.stub_status"
 
-            if not stub_status then
-                ngx.say("disable")
-                return
-            else
-                local stat = stub_status()
-                if type(stat.active) ~= "number" then
-                    ngx.say("failed")
-                    return
-                end
-                if type(stat.accepted) ~= "number" then
-                    ngx.say("failed")
-                    return
-                end
-                if type(stat.handled) ~= "number" then
-                    ngx.say("failed")
-                    return
-                end
-                if type(stat.requests) ~= "number" then
-                    ngx.say("failed")
-                    return
-                end
-                if type(stat.reading) ~= "number" then
-                    ngx.say("failed")
-                    return
-                end
-                if type(stat.writing) ~= "number" then
-                    ngx.say("failed")
-                    return
-                end
-                if type(stat.waiting) ~= "number" then
-                    ngx.say("failed")
-                    return
-                end
-                ngx.say("succeed")
+            local stat = stub_status()
+            if type(stat.active) ~= "number" then
+                ngx.say("failed")
                 return
             end
+            if type(stat.accepted) ~= "number" then
+                ngx.say("failed")
+                return
+            end
+            if type(stat.handled) ~= "number" then
+                ngx.say("failed")
+                return
+            end
+            if type(stat.requests) ~= "number" then
+                ngx.say("failed")
+                return
+            end
+            if type(stat.reading) ~= "number" then
+                ngx.say("failed")
+                return
+            end
+            if type(stat.writing) ~= "number" then
+                ngx.say("failed")
+                return
+            end
+            if type(stat.waiting) ~= "number" then
+                ngx.say("failed")
+                return
+            end
+            ngx.say("succeed")
         }
     }
 --- request
