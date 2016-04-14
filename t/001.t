@@ -24,11 +24,13 @@ __DATA__
 --- config
     location /stub {
         content_by_lua_block {
-            if not ngx.stub_status then
+            local stub_status = require "ngx.stub_status"
+
+            if not stub_status then
                 ngx.say("disable")
                 return
             else
-                local stat = ngx.stub_status()
+                local stat = stub_status()
                 if type(stat.active) ~= "number" then
                     ngx.say("failed")
                     return
