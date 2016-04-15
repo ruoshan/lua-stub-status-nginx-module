@@ -3,6 +3,7 @@
  * Copyright (C) Ruoshan Huang
  */
 
+
 #ifndef DDEBUG
 #define DDEBUG 0
 #endif
@@ -15,6 +16,7 @@
 #include <lauxlib.h>
 #include "ngx_http_lua_api.h"
 
+
 extern ngx_atomic_t  *ngx_stat_accepted;
 extern ngx_atomic_t  *ngx_stat_handled;
 extern ngx_atomic_t  *ngx_stat_requests;
@@ -23,9 +25,11 @@ extern ngx_atomic_t  *ngx_stat_reading;
 extern ngx_atomic_t  *ngx_stat_writing;
 extern ngx_atomic_t  *ngx_stat_waiting;
 
+
 static ngx_int_t ngx_http_lua_stub_status_init(ngx_conf_t *cf);
 static int       ngx_http_lua_stub_status_create_module(lua_State *L);
 static int       ngx_http_lua_stub_status(lua_State *L);
+
 
 static ngx_http_module_t ngx_http_lua_stub_status_ctx = {
     NULL,                           /* preconfiguration */
@@ -64,11 +68,13 @@ static ngx_int_t ngx_http_lua_stub_status_init(ngx_conf_t *cf) {
     return NGX_OK;
 }
 
+
 static int
 ngx_http_lua_stub_status_create_module(lua_State *L) {
     lua_pushcfunction(L, ngx_http_lua_stub_status);
     return 1;
 }
+
 
 static int
 ngx_http_lua_stub_status(lua_State *L) {
